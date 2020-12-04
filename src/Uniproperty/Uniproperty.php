@@ -37,7 +37,6 @@ class Uniproperty
             return;
         }
 
-        $class = get_class($object);
         throw new PropertyException($propertyName, $object);
     }
 
