@@ -11,9 +11,4 @@ class PropertyException extends \Exception
             "The property '$propertyName' does not exist in '$class'", $code = 0, $previous = null
         );
     }
-
-    public static function override($message)
-    {
-        return new \Exception($message);
-    }
 }
