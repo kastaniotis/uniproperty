@@ -1,0 +1,26 @@
+{
+    "name": "iconic/uniproperty",
+    "description": "A small helper library that helps when you have to access properties of unknown objects by name. It supports both public properties and getter/setter methods.",
+    "type": "library",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "behat/behat": "^3.8",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.2",
+        "friendsofphp/php-cs-fixer": "^2.16"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dimitris Kastaniotis",
+            "email": "d.kastaniotis@iconic.gr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Iconic\\": "src"
+        }
+    }
+}
