@@ -14,6 +14,13 @@ class Uniproperty
             return $object->{$method}();
         }
 
+        //TODO: this needs test scenario
+        $method = 'is'.ucfirst($propertyName);
+
+        if (method_exists($object, $method)) {
+            return $object->{$method}();
+        }
+
         if (property_exists($object, $propertyName)) {
             return $object->$propertyName;
         }
