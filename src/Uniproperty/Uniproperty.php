@@ -10,7 +10,11 @@ class Uniproperty
     {
         $method = 'get'.ucfirst($propertyName);
 
+        $actionable = '';
+
         if (method_exists($object, $method)) {
+            $actionable = $method;
+
             return $object->{$method}();
         }
 
@@ -18,14 +22,18 @@ class Uniproperty
         $method = 'is'.ucfirst($propertyName);
 
         if (method_exists($object, $method)) {
+            $actionable = $method;
+
             return $object->{$method}();
         }
 
         if (property_exists($object, $propertyName)) {
+            $actionable = $propertyName;
+
             return $object->$propertyName;
         }
 
-        throw new PropertyException($propertyName, $object);
+        throw new PropertyException($actionable, $object);
     }
 
     public static function set(object $object, string $propertyName, string $propertyValue)
