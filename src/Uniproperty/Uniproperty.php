@@ -19,6 +19,7 @@ class Uniproperty
         }
 
         //TODO: this needs test scenario
+        //TODO: And also check for booleans
         $method = 'is'.ucfirst($propertyName);
 
         if (method_exists($object, $method)) {
@@ -38,27 +39,32 @@ class Uniproperty
 
     public static function set(object $object, string $propertyName, string $propertyValue)
     {
+        $actionable = '';
         $method = 'set'.ucfirst($propertyName);
 
         if (method_exists($object, $method)) {
+            //TODO: Test this? Maybe not. depends on the tests. check it out.
+            $actionable = $method;
             $object->{$method}($propertyValue);
 
             return;
         }
 
         if (property_exists($object, $propertyName)) {
+            $actionable = $propertyName;
             $object->$propertyName = $propertyValue;
 
             return;
         }
 
-        throw new PropertyException($propertyName, $object);
+        throw new PropertyException($actionable, $object);
     }
 
     public static function check(object $object, string $propertyName)
     {
-        $method = 'get'.ucfirst($propertyName);
+        $methodGet = 'get'.ucfirst($propertyName);
+        $methodIs = 'is'.ucfirst($propertyName);
 
-        return property_exists($object, $propertyName) || method_exists($object, $method);
+        return property_exists($object, $propertyName) || method_exists($object, $methodGet) || method_exists($object, $methodIs);
     }
 }
