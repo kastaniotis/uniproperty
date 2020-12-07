@@ -8,6 +8,12 @@ class Uniproperty
 {
     public static function get(object $object, string $propertyName)
     {
+        if (array_key_exists($propertyName, get_object_vars($object))) {
+            $actionable = $propertyName;
+
+            return $object->$propertyName;
+        }
+
         $method = 'get'.ucfirst($propertyName);
 
         $actionable = '';
@@ -26,12 +32,6 @@ class Uniproperty
             $actionable = $method;
 
             return $object->{$method}();
-        }
-
-        if (property_exists($object, $propertyName)) {
-            $actionable = $propertyName;
-
-            return $object->$propertyName;
         }
 
         throw new PropertyException($actionable, $object);
