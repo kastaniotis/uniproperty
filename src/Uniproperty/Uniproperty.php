@@ -37,7 +37,7 @@ class Uniproperty
         throw new PropertyException($actionable, $object);
     }
 
-    public static function set(object $object, string $propertyName, string $propertyValue)
+    public static function set(object $object, string $propertyName, $propertyValue)
     {
         $actionable = '';
         $method = 'set'.ucfirst($propertyName);
