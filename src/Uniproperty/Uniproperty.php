@@ -4,6 +4,8 @@ namespace Iconic\Uniproperty;
 
 use Iconic\Uniproperty\Exception\PropertyException;
 
+//TODO: Caching all property info in a static dictionary should make things faster
+
 class Uniproperty
 {
     public static function get(object $object, string $propertyName)
